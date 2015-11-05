@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="3"
+     xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <discard-changes/>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="4"
+     xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"  >
+ <edit-config>
+    <target>
+      <candidate/>
+    </target>
+    <config>
+      <mpls xmlns="http://openconfig.net/yang/mpls">
+        <lsps>
+          <static-lsps>
+            <label-switched-path>
+              <name>lsp0</name>
+              <ingress>
+                <incoming-label>100</incoming-label>
+              </ingress>
+              <egress>
+                <next-hop>2001:db8:c18:1::3</next-hop>
+              </egress>
+            </label-switched-path>
+          </static-lsps>
+        </lsps>
+      </mpls>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="6"
+    xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" >
+  <commit/>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="10"
+     xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session/>
+</rpc>
+]]>]]>

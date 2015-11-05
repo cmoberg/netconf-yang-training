@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="1"
+     xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <discard-changes/>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"  message-id="2">
+ <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>eth0</name>
+          <ipv6 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address>
+              <ip>2001:db8:c18:1::3</ip>
+              <prefix-length>128</prefix-length>
+            </address>
+          </ipv6>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="3">
+  <validate>
+    <source>
+      <candidate/>
+    </source>
+  </validate>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="3">
+  <commit/>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="4">
+  <close-session/>
+</rpc>
+]]>]]>
+

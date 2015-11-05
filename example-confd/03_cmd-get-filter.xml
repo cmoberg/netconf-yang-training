@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<get>
+  <filter xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
+    <nacm></nacm>
+  </filter>
+</get>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2">
+  <close-session/>
+</rpc>
+]]>]]>
