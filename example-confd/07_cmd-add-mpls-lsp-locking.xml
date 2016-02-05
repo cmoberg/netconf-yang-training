@@ -6,6 +6,16 @@
 </hello>
 ]]>]]>
 <?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="2"
+     xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <lock>
+    <target>
+      <candidate/>
+    </target>
+  </lock>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
 <rpc message-id="3"
      xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
   <discard-changes/>
@@ -36,6 +46,15 @@
       </mpls>
     </config>
   </edit-config>
+</rpc>
+]]>]]>
+<rpc message-id="5"
+     xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <lock>
+    <target>
+      <candidate/>
+    </target>
+  </lock>
 </rpc>
 ]]>]]>
 <?xml version="1.0" encoding="UTF-8"?>

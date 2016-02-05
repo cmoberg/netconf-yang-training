@@ -51,9 +51,7 @@ start_confd:
 
 ######################################################################
 stop:
-	### Killing any confd daemon or DHCP confd agents
 	$(CONFD) --stop    || true
-	$(KILLALL) dhcpd_conf || true
 
 ######################################################################
 cli:
