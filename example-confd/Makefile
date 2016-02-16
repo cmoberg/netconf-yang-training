@@ -46,6 +46,9 @@ clean:	iclean
 ######################################################################
 start:  stop start_confd 
 
+start_trace:
+	$(CONFD) -c confd.conf $(CONFD_FLAGS)	
+
 start_confd:
 	$(CONFD) -c confd.conf $(CONFD_FLAGS)
 

@@ -3,10 +3,6 @@
 import sys, os, warnings, time
 from ncclient import manager, operations, xml_
 
-import logging
-
-log = logging.getLogger(__name__)
-
 def default_unknown_host_cb(foo, bar):
 	return True
 
@@ -31,8 +27,6 @@ config_snippet = """
 """
 
 def demo(host="127.0.0.1", port = 2022, user="admin", password = "admin"):
-	logging.basicConfig(level=logging.INFO)
-
 	with manager.connect(host=host, port=port, username=user, password=password, unknown_host_cb=default_unknown_host_cb) as m:
 		# Persist-id for the confirmed commit
 		pid = "IQ,d4668"
@@ -44,9 +38,11 @@ def demo(host="127.0.0.1", port = 2022, user="admin", password = "admin"):
 			m.validate()
 			m.commit(confirmed=True, timeout="10", persist=pid)
 			print "Running the tests"
-			res = m.commit(confirmed=True)
+			time.sleep(5)
 			# Could cancel the commit during the timeout
 			# res = m.cancel_commit(persist_id=pid)
+			print "Committing"
+			res = m.commit(confirmed=True)
 			print res
 
 if __name__ == '__main__':
