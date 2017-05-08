@@ -1,8 +1,7 @@
 #!/bin/env python
 
-import sys, os, warnings, time
-from ncclient import manager, operations, xml_
-
+from ncclient import manager
+from ncenviron import *
 
 def default_unknown_host_cb(foo, bar):
 	return True
@@ -19,10 +18,10 @@ config_snippet = """
 </config>
 """
 
-def demo(host="127.0.0.1", port = 2022, user="admin", password = "admin"):
-  with manager.connect(host=host, port=port, username=user, password=password, unknown_host_cb=default_unknown_host_cb) as m:
-    res = m.edit_config(config=config_snippet, target="running")
-    print res
+def demo(host=nc_host, port=nc_port, user=nc_user, password=nc_password):
+    with manager.connect(host=host, port=port, username=user, password=password, hostkey_verify=False, look_for_keys=False, allow_agent=False) as m:
+        res = m.edit_config(config=config_snippet, target="running")
+        print res
 
 if __name__ == '__main__':
 	demo()

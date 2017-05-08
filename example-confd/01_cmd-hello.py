@@ -2,12 +2,13 @@
 
 import sys, os, warnings, time
 from ncclient import manager, operations
+from ncenviron import *
 
 def default_unknown_host_cb(foo, bar):
 	return True
 
-def demo(host="127.0.0.1", port=2022, user='admin', password='admin'):
-	with manager.connect(host=host, port=port, username=user, password=password, hostkey_verify=False) as m:
+def demo(host=nc_host, port=nc_port, user=nc_user, password=nc_password):
+	with manager.connect(host=host, port=port, username=user, password=password, hostkey_verify=False, look_for_keys=False, allow_agent=False) as m:
 		for capa in m.server_capabilities:
 			print capa
 

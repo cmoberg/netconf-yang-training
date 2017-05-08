@@ -2,6 +2,7 @@
 
 import sys, os, warnings, time
 from ncclient import manager, operations, xml_
+from ncenviron import *
 
 def default_unknown_host_cb(foo, bar):
 	return True
@@ -22,8 +23,8 @@ config_snippet = """
 </config>
 """
 
-def demo(host="127.0.0.1", port = 2022, user="admin", password = "admin"):
-	with manager.connect(host=host, port=port, username=user, password=password, unknown_host_cb=default_unknown_host_cb) as m:
+def demo(host=nc_host, port=nc_port, user=nc_user, password=nc_password):
+    with manager.connect(host=host, port=port, username=user, password=password, hostkey_verify=False, look_for_keys=False, allow_agent=False) as m:
 		assert(":candidate" in m.server_capabilities)
 		m.discard_changes()
 		m.edit_config(config=config_snippet, target="candidate")
