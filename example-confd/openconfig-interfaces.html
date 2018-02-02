@@ -1,0 +1,1917 @@
+<head><title> openconfig-interfaces 
+</title>
+<style type="text/css" media="all">
+
+body, h1, h2, h3, h4, h5, h6, p, td, table td, input, select {
+        font-family: Verdana, Helvetica, Arial, sans-serif;
+        font-size: 10pt;
+}
+
+body, ol, li, h2 {padding:0; margin: 0;}
+
+ol#root  {padding-left: 5px; margin-top: 2px; margin-bottom: 1px;
+          list-style: none;}
+
+#root ol {padding-left: 5px; margin-top: 2px; margin-bottom: 1px;
+          list-style: none;}
+
+#root li {margin-bottom: 1px; padding-left: 5px;  margin-top: 2px;
+          font-size: x-small;}
+
+.panel   {border-bottom: 1px solid #999; margin-bottom: 2px; margin-top: 2px;
+          background: #eee;}
+
+#root ul {margin-bottom: 1px; margin-top: 2px; list-style-position: inside;}
+
+#root a {text-decoration: none;}
+
+.folder {
+   
+background:url(data:image/gif;base64,R0lGODlhGgAOALMLAJmZmYuLi3p6ev///+zs7MzMzGZmZqqqqrS0tLq6uuHh4f///wAAAAAAAAAAAAAAACH5BAEAAAsALAAAAAAaAA4AAASJcMlJq714qgROKUtxAABBgJkUFMQwFEhyFoFAKini7idSHwGDQXAYYAADxQdBOjiBQqGgYKx4AomCYoYAHqLRVVUCKCBdSthhCgYDKIDuTpnoGgptgxged3FHBgpgU2MTASsmdCM1gkNFGDVaHx91QQQ3KZGSZocHBCEpEgIrCYdxn6EVAnoIGREAOw==)  no-repeat; float: left; padding-right: 30px;margin-left: 3px;
+          
+}
+
+.doc {
+   
+background:url(data:image/gif;base64,R0lGODlhDAAOALMJAMzMzODg4P///+np6a+vr+7u7jMzM5mZmYmJif///wAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAkALAAAAAAMAA4AAARFEEhyCAEjackPCESwBRxwCKD4BSSACCgxrKyJ3B42sK2FSINgsAa4AApI4W5yFCCTywts+txJp9TC4IrFcruwi2FMLgMiADs=)
+no-repeat; float: left; padding-right: 10px; margin-left: 3px;
+cursor: pointer;
+          
+}
+
+.leaf {
+   
+background:url(data:image/gif;base64,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)
+no-repeat; float: left; padding-right: 10px;margin-left: 3px;
+          
+}
+
+.leaf-list {
+   
+background:url(data:image/gif;base64,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)
+no-repeat; float: left; padding-right: 10px; margin-left: 3px;
+          
+}
+
+.action {
+   
+background:url(data:image/gif;base64,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)
+no-repeat; float: left; height: 14px; width: 12px; padding-right: 10px; margin-left: 3px;
+          
+}
+
+.tier1  {margin-left: 0;     }
+.tier2  {margin-left: 1.5em; }
+.tier3  {margin-left: 3em;   }
+.tier4  {margin-left: 4.5em; }
+.tier5  {margin-left: 6em;   }
+.tier6  {margin-left: 7.5em; }
+.tier7  {margin-left: 9em;   }
+.tier8  {margin-left: 10.5em;}
+.tier9  {margin-left: 12em;  }
+.tier10 {margin-left: 13.5em;}
+.tier11 {margin-left: 15em;  }
+.tier12 {margin-left: 16.5em;}
+
+.level1 {padding-left: 0;    }
+.level2 {padding-left: 1em;  }
+.level3 {padding-left: 2em;  }
+.level4 {padding-left: 3em;  }
+</style>
+
+<script language="javascript1.2">
+function toggleRows(elm) {
+ var rows = document.getElementsByTagName("TR");
+ elm.style.backgroundImage = "url(data:image/gif;base64,R0lGODlhGgAOALMLAJmZmYuLi3p6ev///+zs7MzMzGZmZqqqqrS0tLq6uuHh4f///wAAAAAAAAAAAAAAACH5BAEAAAsALAAAAAAaAA4AAASJcMlJq714qgROKUtxAABBgJkUFMQwFEhyFoFAKini7idSHwGDQXAYYAADxQdBOjiBQqGgYKx4AomCYoYAHqLRVVUCKCBdSthhCgYDKIDuTpnoGgptgxged3FHBgpgU2MTASsmdCM1gkNFGDVaHx91QQQ3KZGSZocHBCEpEgIrCYdxn6EVAnoIGREAOw==)";
+ var newDisplay = "none";
+ var thisID = elm.parentNode.parentNode.parentNode.id + "-";
+ // Are we expanding or contracting? If the first child is hidden, we expand
+  for (var i = 0; i < rows.length; i++) {
+   var r = rows[i];
+   if (matchStart(r.id, thisID, true)) {
+    if (r.style.display == "none") {
+     if (document.all) newDisplay = "block"; //IE4+ specific code
+     else newDisplay = "table-row"; //Netscape and Mozilla
+     elm.style.backgroundImage = "url(data:image/gif;base64,R0lGODlhGgAOALMLAJmZmYqKiv///+zs7MzMzGZmZrOzs7q6uqqqqnZ2duHh4f///wAAAAAAAAAAAAAAACH5BAEAAAsALAAAAAAaAA4AAASScMlJq714qgMMIQuBAMAwZBRADIJAGMfwBQE6GW0uGzRS2wuAQPHhABAIAyBAABSe0IJKgiAEDgSF7OVDBKNQwEQlbBG5CZAiAA4oxsoc8WBAFEALe9SQ6rS2dU5vCwJsTwECKUwmcyMBCYMhUHgTj1kfRTwFJxKFBYgVlpdNNCUVBHcWCUwHpQacFgJCqp98GBEAOw==)";
+    }
+    break;
+   }
+ }
+
+ // When expanding, only expand one level.  Collapse all desendants.
+ var matchDirectChildrenOnly = (newDisplay != "none");
+
+ for (var j = 0; j < rows.length; j++) {
+   var s = rows[j];
+   if (matchStart(s.id, thisID, matchDirectChildrenOnly)) {
+     s.style.display = newDisplay;
+     var cell = s.getElementsByTagName("TD")[0];
+     var tier = cell.getElementsByTagName("DIV")[0];
+     var folder = tier.getElementsByTagName("A")[0];
+     if (folder.getAttribute("onclick") != null) {
+     folder.style.backgroundImage = "url(data:image/gif;base64,R0lGODlhGgAOALMLAJmZmYuLi3p6ev///+zs7MzMzGZmZqqqqrS0tLq6uuHh4f///wAAAAAAAAAAAAAAACH5BAEAAAsALAAAAAAaAA4AAASJcMlJq714qgROKUtxAABBgJkUFMQwFEhyFoFAKini7idSHwGDQXAYYAADxQdBOjiBQqGgYKx4AomCYoYAHqLRVVUCKCBdSthhCgYDKIDuTpnoGgptgxged3FHBgpgU2MTASsmdCM1gkNFGDVaHx91QQQ3KZGSZocHBCEpEgIrCYdxn6EVAnoIGREAOw==)";
+     }
+   }
+ }
+}
+
+function matchStart(target, pattern, matchDirectChildrenOnly) {
+ var pos = target.indexOf(pattern);
+ if (pos != 0)
+    return false;
+ if (!matchDirectChildrenOnly)
+    return true;
+ if (target.slice(pos + pattern.length, target.length).indexOf("-") >= 0)
+    return false;
+ return true;
+}
+
+function collapseAllRows() {
+ var rows = document.getElementsByTagName("TR");
+ for (var i = 0; i < rows.length; i++) {
+   var r = rows[i];
+   if (r.id.indexOf("-") >= 0) {
+     r.style.display = "none";
+   }
+ }
+}
+
+function expandAllRows() {
+  var rows = document.getElementsByTagName("TR");
+  for (var i = 0; i < rows.length; i ++) {
+    var r = rows[i];
+    if (r.id.indexOf("-") >= 0) {
+      r.style.display = "table-row";
+    }
+  }
+}
+</script>
+
+<body onload="collapseAllRows();">
+<a href="http://www.tail-f.com">
+   <img src= "data:image/gif;base64,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"  />
+</a>
+<div class="app">
+<div style="background: #eee; border: dashed 1px #000;">
+<h1> Module: <font color=blue>openconfig-interfaces</font>, Namespace:
+                    <font color=blue>http://openconfig.net/yang/interfaces</font>, Prefix:
+                    <font color=blue>ocif</font></h1> 
+
+ <table width="100%">
+
+ <tr>
+  <!-- specifing one or more widths keeps columns
+       constant despite changes in visible content -->
+  <th align=left>
+     Element
+     <a href='#' onclick='expandAllRows();'>[+]Expand all</a>
+     <a href='#' onclick='collapseAllRows();'>[-]Collapse all</a>
+  </th>
+  <th align=left>Schema</th>
+  <th align=left>Type</th>
+  <th align=left>Flags</th>
+  <th align=left>Opts</th>
+  <th align=left>Status</th>
+  <th align=left>Path</th>
+</tr>
+<tr id="1" class="a">
+                     <td id="p1">
+                        <div id="p2" class="tier1">
+                           <a href="#" id="p3"
+                              onclick="toggleRows(this);return false;"
+                              class="folder">&nbsp;
+                           </a>
+                           <font color=blue>openconfig-interfaces</font>
+                        </div>
+                     </td> 
+<td>module</td><td></td><td></td><td></td><td>
+                    </td></tr>
+<tr id="1-1" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier2">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Top level container for interfaces, including configuration
+and state data.">interfaces</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces</td>
+                    </tr> 
+<tr id="1-1-1" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier3">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="The list of named interfaces on the device.">interface[name]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface</td>
+                    </tr> 
+<tr id="1-1-1-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier4>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="References the configured name of the interface">  name </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="leafref
+ : ../ocif:config/ocif:name">leafref</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:name</td</tr> 
+<tr id="1-1-1-2" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier4">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Configurable items at the global, physical interface
+level">config</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:config</td>
+                    </tr> 
+<tr id="1-1-1-2-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The type of the interface.
+
+When an interface entry is created, a server MAY
+initialize the type leaf with a valid value, e.g., if it
+is possible to derive the type from the name of the
+interface.
+
+If a client tries to set the type of an interface to a
+value that can never be used by the system, e.g., if the
+type is not supported or if the type does not match the
+name of the interface, the server MUST reject the request.
+A NETCONF server MUST reply with an rpc-error with the
+error-tag 'invalid-value' in this case.">  type </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="identityref
+ {if:interface-type}">identityref</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:config/ocif:type</td</tr> 
+<tr id="1-1-1-2-2" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Set the max transmission unit size in octets
+for the physical interface.  If this is not set, the mtu is
+set to the operational default -- e.g., 1514 bytes on an
+Ethernet interface."> <em> mtu </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint16
+">uint16</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:config/ocif:mtu</td</tr> 
+<tr id="1-1-1-2-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The name of the interface.
+
+A device MAY restrict the allowed values for this leaf,
+possibly depending on the type of the interface.
+For system-controlled interfaces, this leaf is the
+device-specific name of the interface.  The 'config false'
+list interfaces/interface[name]/state contains the currently
+existing interfaces on the device.
+
+If a client tries to create configuration for a
+system-controlled interface that is not present in the
+corresponding state list, the server MAY reject
+the request if the implementation does not support
+pre-provisioning of interfaces or if the name refers to
+an interface that can never exist in the system.  A
+NETCONF server MUST reply with an rpc-error with the
+error-tag 'invalid-value' in this case.
+
+The IETF model in RFC 7223 provides YANG features for the
+following (i.e., pre-provisioning and arbitrary-names),
+however they are omitted here:
+
+ If the device supports pre-provisioning of interface
+ configuration, the 'pre-provisioning' feature is
+ advertised.
+
+ If the device allows arbitrarily named user-controlled
+ interfaces, the 'arbitrary-names' feature is advertised.
+
+When a configured user-controlled interface is created by
+the system, it is instantiated with the same name in the
+/interfaces/interface[name]/state list."> <em> name </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:config/ocif:name</td</tr> 
+<tr id="1-1-1-2-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+A textual description of the interface.
+
+A server implementation MAY map this leaf to the ifAlias
+MIB object.  Such an implementation needs to use some
+mechanism to handle the differences in size and characters
+allowed between this leaf and ifAlias.  The definition of
+such a mechanism is outside the scope of this document.
+
+Since ifAlias is defined to be stored in non-volatile
+storage, the MIB implementation MUST map ifAlias to the
+value of 'description' in the persistently stored
+datastore.
+
+Specifically, if the device supports ':startup', when
+ifAlias is read the device MUST return the value of
+'description' in the 'startup' datastore, and when it is
+written, it MUST be written to the 'running' and 'startup'
+datastores.  Note that it is up to the implementation to
+
+decide whether to modify this single leaf in 'startup' or
+perform an implicit copy-config from 'running' to
+'startup'.
+
+If the device does not support ':startup', ifAlias MUST
+be mapped to the 'description' leaf in the 'running'
+datastore."> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:config/ocif:description</td</tr> 
+<tr id="1-1-1-2-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+This leaf contains the configured, desired state of the
+interface.
+
+Systems that implement the IF-MIB use the value of this
+leaf in the 'running' datastore to set
+IF-MIB.ifAdminStatus to 'up' or 'down' after an ifEntry
+has been initialized, as described in RFC 2863.
+
+Changes in this leaf in the 'running' datastore are
+reflected in ifAdminStatus, but if ifAdminStatus is
+changed over SNMP, this leaf is not affected."> <em> enabled </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="boolean
+">boolean</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:config/ocif:enabled</td</tr> 
+<tr id="1-1-1-3" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier4">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Operational state data at the global interface level">state</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>no config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:state</td>
+                    </tr> 
+<tr id="1-1-1-3-6" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The type of the interface.
+
+When an interface entry is created, a server MAY
+initialize the type leaf with a valid value, e.g., if it
+is possible to derive the type from the name of the
+interface.
+
+If a client tries to set the type of an interface to a
+value that can never be used by the system, e.g., if the
+type is not supported or if the type does not match the
+name of the interface, the server MUST reject the request.
+A NETCONF server MUST reply with an rpc-error with the
+error-tag 'invalid-value' in this case.">  type </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="identityref
+ {if:interface-type}">identityref</abbr></td>
+                       <td nowrap>no config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:type</td</tr> 
+<tr id="1-1-1-3-7" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Set the max transmission unit size in octets
+for the physical interface.  If this is not set, the mtu is
+set to the operational default -- e.g., 1514 bytes on an
+Ethernet interface."> <em> mtu </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint16
+">uint16</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:mtu</td</tr> 
+<tr id="1-1-1-3-8" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The name of the interface.
+
+A device MAY restrict the allowed values for this leaf,
+possibly depending on the type of the interface.
+For system-controlled interfaces, this leaf is the
+device-specific name of the interface.  The 'config false'
+list interfaces/interface[name]/state contains the currently
+existing interfaces on the device.
+
+If a client tries to create configuration for a
+system-controlled interface that is not present in the
+corresponding state list, the server MAY reject
+the request if the implementation does not support
+pre-provisioning of interfaces or if the name refers to
+an interface that can never exist in the system.  A
+NETCONF server MUST reply with an rpc-error with the
+error-tag 'invalid-value' in this case.
+
+The IETF model in RFC 7223 provides YANG features for the
+following (i.e., pre-provisioning and arbitrary-names),
+however they are omitted here:
+
+ If the device supports pre-provisioning of interface
+ configuration, the 'pre-provisioning' feature is
+ advertised.
+
+ If the device allows arbitrarily named user-controlled
+ interfaces, the 'arbitrary-names' feature is advertised.
+
+When a configured user-controlled interface is created by
+the system, it is instantiated with the same name in the
+/interfaces/interface[name]/state list."> <em> name </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:name</td</tr> 
+<tr id="1-1-1-3-9" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+A textual description of the interface.
+
+A server implementation MAY map this leaf to the ifAlias
+MIB object.  Such an implementation needs to use some
+mechanism to handle the differences in size and characters
+allowed between this leaf and ifAlias.  The definition of
+such a mechanism is outside the scope of this document.
+
+Since ifAlias is defined to be stored in non-volatile
+storage, the MIB implementation MUST map ifAlias to the
+value of 'description' in the persistently stored
+datastore.
+
+Specifically, if the device supports ':startup', when
+ifAlias is read the device MUST return the value of
+'description' in the 'startup' datastore, and when it is
+written, it MUST be written to the 'running' and 'startup'
+datastores.  Note that it is up to the implementation to
+
+decide whether to modify this single leaf in 'startup' or
+perform an implicit copy-config from 'running' to
+'startup'.
+
+If the device does not support ':startup', ifAlias MUST
+be mapped to the 'description' leaf in the 'running'
+datastore."> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:description</td</tr> 
+<tr id="1-1-1-3-10" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+This leaf contains the configured, desired state of the
+interface.
+
+Systems that implement the IF-MIB use the value of this
+leaf in the 'running' datastore to set
+IF-MIB.ifAdminStatus to 'up' or 'down' after an ifEntry
+has been initialized, as described in RFC 2863.
+
+Changes in this leaf in the 'running' datastore are
+reflected in ifAdminStatus, but if ifAdminStatus is
+changed over SNMP, this leaf is not affected."> <em> enabled </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="boolean
+">boolean</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:enabled</td</tr> 
+<tr id="1-1-1-3-11" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="System assigned number for each interface.  Corresponds to
+ifIndex object in SNMP Interface MIB"> <em> ifindex </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:ifindex</td</tr> 
+<tr id="1-1-1-3-12" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The desired state of the interface.  In RFC 7223 this leaf
+has the same read semantics as ifAdminStatus.  Here, it
+reflects the administrative state as set by enabling or
+disabling the interface.">  admin-status </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="enumeration
+ : {UP,DOWN,TESTING,}">enumeration</abbr></td>
+                       <td nowrap>no config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:admin-status</td</tr> 
+<tr id="1-1-1-3-13" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The current operational state of the interface.
+
+This leaf has the same semantics as ifOperStatus.">  oper-status </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="enumeration
+ : {UP,DOWN,TESTING,UNKNOWN,DORMANT,NOT-PRESENT,LOWER-LAYER-DOWN,}">enumeration</abbr></td>
+                       <td nowrap>no config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:oper-status</td</tr> 
+<tr id="1-1-1-3-14" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier5>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Date and time of the last state change of the interface
+(e.g., up-to-down transition).   This corresponds to the
+ifLastChange object in the standard interface MIB."> <em> last-change </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:timeticks</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:last-change</td</tr> 
+<tr id="1-1-1-3-15" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="A collection of interface-related statistics objects.">counters</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>no config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters</td>
+                    </tr> 
+<tr id="1-1-1-3-15-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The total number of octets received on the interface,
+including framing characters.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-octets </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:in-octets</td</tr> 
+<tr id="1-1-1-3-15-2" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The number of packets, delivered by this sub-layer to a
+higher (sub-)layer, that were not addressed to a
+multicast or broadcast address at this sub-layer.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-unicast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:in-unicast-pkts</td</tr> 
+<tr id="1-1-1-3-15-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The number of packets, delivered by this sub-layer to a
+higher (sub-)layer, that were addressed to a broadcast
+address at this sub-layer.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-broadcast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:in-broadcast-pkts</td</tr> 
+<tr id="1-1-1-3-15-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+
+The number of packets, delivered by this sub-layer to a
+higher (sub-)layer, that were addressed to a multicast
+address at this sub-layer.  For a MAC-layer protocol,
+this includes both Group and Functional addresses.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-multicast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:in-multicast-pkts</td</tr> 
+<tr id="1-1-1-3-15-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+The number of inbound packets that were chosen to be
+discarded even though no errors had been detected to
+prevent their being deliverable to a higher-layer
+protocol.  One possible reason for discarding such a
+packet could be to free up buffer space.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-discards </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:in-discards</td</tr> 
+<tr id="1-1-1-3-15-6" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+For packet-oriented interfaces, the number of inbound
+packets that contained errors preventing them from being
+deliverable to a higher-layer protocol.  For character-
+oriented or fixed-length interfaces, the number of
+inbound transmission units that contained errors
+preventing them from being deliverable to a higher-layer
+protocol.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-errors </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:in-errors</td</tr> 
+<tr id="1-1-1-3-15-7" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+For packet-oriented interfaces, the number of packets
+received via the interface that were discarded because
+of an unknown or unsupported protocol.  For
+character-oriented or fixed-length interfaces that
+support protocol multiplexing, the number of
+transmission units received via the interface that were
+discarded because of an unknown or unsupported protocol.
+For any interface that does not support protocol
+multiplexing, this counter is not present.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-unknown-protos </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter32</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:in-unknown-protos</td</tr> 
+<tr id="1-1-1-3-15-8" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+The total number of octets transmitted out of the
+interface, including framing characters.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-octets </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:out-octets</td</tr> 
+<tr id="1-1-1-3-15-9" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The total number of packets that higher-level protocols
+requested be transmitted, and that were not addressed
+to a multicast or broadcast address at this sub-layer,
+including those that were discarded or not sent.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-unicast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:out-unicast-pkts</td</tr> 
+<tr id="1-1-1-3-15-10" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The total number of packets that higher-level protocols
+requested be transmitted, and that were addressed to a
+broadcast address at this sub-layer, including those
+that were discarded or not sent.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-broadcast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:out-broadcast-pkts</td</tr> 
+<tr id="1-1-1-3-15-11" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+The total number of packets that higher-level protocols
+requested be transmitted, and that were addressed to a
+multicast address at this sub-layer, including those
+that were discarded or not sent.  For a MAC-layer
+protocol, this includes both Group and Functional
+addresses.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-multicast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:out-multicast-pkts</td</tr> 
+<tr id="1-1-1-3-15-12" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+The number of outbound packets that were chosen to be
+discarded even though no errors had been detected to
+prevent their being transmitted.  One possible reason
+for discarding such a packet could be to free up buffer
+space.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-discards </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:out-discards</td</tr> 
+<tr id="1-1-1-3-15-13" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+For packet-oriented interfaces, the number of outbound
+packets that could not be transmitted because of errors.
+For character-oriented or fixed-length interfaces, the
+number of outbound transmission units that could not be
+transmitted because of errors.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-errors </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:out-errors</td</tr> 
+<tr id="1-1-1-3-15-14" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Indicates the last time the interface counters were
+cleared."> <em> last-clear </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:date-and-time</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:state/ocif:counters/ocif:last-clear</td</tr> 
+<tr id="1-1-1-4" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier4">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Top-level container for hold-time settings to enable
+dampening advertisements of interface transitions.">hold-time</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:hold-time</td>
+                    </tr> 
+<tr id="1-1-1-4-16" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Configuration data for interface hold-time settings.">config</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:hold-time/ocif:config</td>
+                    </tr> 
+<tr id="1-1-1-4-16-15" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Dampens advertisement when the interface
+transitions from down to up.  A zero value means dampening
+is turned off, i.e., immediate notification."> <em> up </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:hold-time/ocif:config/ocif:up</td</tr> 
+<tr id="1-1-1-4-16-16" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Dampens advertisement when the interface transitions from
+up to down.  A zero value means dampening is turned off,
+i.e., immediate notification."> <em> down </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:hold-time/ocif:config/ocif:down</td</tr> 
+<tr id="1-1-1-4-17" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Operational state data for interface hold-time.">state</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>no config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:hold-time/ocif:state</td>
+                    </tr> 
+<tr id="1-1-1-4-17-17" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Dampens advertisement when the interface
+transitions from down to up.  A zero value means dampening
+is turned off, i.e., immediate notification."> <em> up </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:hold-time/ocif:state/ocif:up</td</tr> 
+<tr id="1-1-1-4-17-18" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Dampens advertisement when the interface transitions from
+up to down.  A zero value means dampening is turned off,
+i.e., immediate notification."> <em> down </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:hold-time/ocif:state/ocif:down</td</tr> 
+<tr id="1-1-1-5" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier4">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Enclosing container for the list of subinterfaces associated
+with a physical interface">subinterfaces</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces</td>
+                    </tr> 
+<tr id="1-1-1-5-18" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier5">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="The list of subinterfaces (logical interfaces) associated
+with a physical interface">subinterface[index]</abbr>
+                          </div>
+                       </td> 
+<td nowrap>list</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface</td>
+                    </tr> 
+<tr id="1-1-1-5-18-19" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier6>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The index number of the subinterface -- used to address
+the logical interface">  index </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="leafref
+ : ../ocif:config/ocif:index">leafref</abbr></td>
+                       <td nowrap>config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:index</td</tr> 
+<tr id="1-1-1-5-18-20" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier6">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Configurable items at the subinterface level">config</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:config</td>
+                    </tr> 
+<tr id="1-1-1-5-18-20-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The index of the subinterface, or logical interface number.
+On systems with no support for subinterfaces, or not using
+subinterfaces, this value should default to 0, i.e., the
+default subinterface."> <em> index </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:config/ocif:index</td</tr> 
+<tr id="1-1-1-5-18-20-2" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Indicates that the subinterface is unnumbered, and provides
+a reference to the subinterface that provides the IP
+address information (v4, v6 or both) for the current
+subinterface."> <em> unnumbered </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="leafref
+ : ../../index">leafref</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:config/ocif:unnumbered</td</tr> 
+<tr id="1-1-1-5-18-20-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The name of the interface.
+
+A device MAY restrict the allowed values for this leaf,
+possibly depending on the type of the interface.
+For system-controlled interfaces, this leaf is the
+device-specific name of the interface.  The 'config false'
+list interfaces/interface[name]/state contains the currently
+existing interfaces on the device.
+
+If a client tries to create configuration for a
+system-controlled interface that is not present in the
+corresponding state list, the server MAY reject
+the request if the implementation does not support
+pre-provisioning of interfaces or if the name refers to
+an interface that can never exist in the system.  A
+NETCONF server MUST reply with an rpc-error with the
+error-tag 'invalid-value' in this case.
+
+The IETF model in RFC 7223 provides YANG features for the
+following (i.e., pre-provisioning and arbitrary-names),
+however they are omitted here:
+
+ If the device supports pre-provisioning of interface
+ configuration, the 'pre-provisioning' feature is
+ advertised.
+
+ If the device allows arbitrarily named user-controlled
+ interfaces, the 'arbitrary-names' feature is advertised.
+
+When a configured user-controlled interface is created by
+the system, it is instantiated with the same name in the
+/interfaces/interface[name]/state list."> <em> name </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:config/ocif:name</td</tr> 
+<tr id="1-1-1-5-18-20-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+A textual description of the interface.
+
+A server implementation MAY map this leaf to the ifAlias
+MIB object.  Such an implementation needs to use some
+mechanism to handle the differences in size and characters
+allowed between this leaf and ifAlias.  The definition of
+such a mechanism is outside the scope of this document.
+
+Since ifAlias is defined to be stored in non-volatile
+storage, the MIB implementation MUST map ifAlias to the
+value of 'description' in the persistently stored
+datastore.
+
+Specifically, if the device supports ':startup', when
+ifAlias is read the device MUST return the value of
+'description' in the 'startup' datastore, and when it is
+written, it MUST be written to the 'running' and 'startup'
+datastores.  Note that it is up to the implementation to
+
+decide whether to modify this single leaf in 'startup' or
+perform an implicit copy-config from 'running' to
+'startup'.
+
+If the device does not support ':startup', ifAlias MUST
+be mapped to the 'description' leaf in the 'running'
+datastore."> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:config/ocif:description</td</tr> 
+<tr id="1-1-1-5-18-20-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+This leaf contains the configured, desired state of the
+interface.
+
+Systems that implement the IF-MIB use the value of this
+leaf in the 'running' datastore to set
+IF-MIB.ifAdminStatus to 'up' or 'down' after an ifEntry
+has been initialized, as described in RFC 2863.
+
+Changes in this leaf in the 'running' datastore are
+reflected in ifAdminStatus, but if ifAdminStatus is
+changed over SNMP, this leaf is not affected."> <em> enabled </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="boolean
+">boolean</abbr></td>
+                       <td nowrap>config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:config/ocif:enabled</td</tr> 
+<tr id="1-1-1-5-18-21" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier6">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="Operational state data for logical interfaces">state</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>no config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state</td>
+                    </tr> 
+<tr id="1-1-1-5-18-21-6" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="The index of the subinterface, or logical interface number.
+On systems with no support for subinterfaces, or not using
+subinterfaces, this value should default to 0, i.e., the
+default subinterface."> <em> index </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:index</td</tr> 
+<tr id="1-1-1-5-18-21-7" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Indicates that the subinterface is unnumbered, and provides
+a reference to the subinterface that provides the IP
+address information (v4, v6 or both) for the current
+subinterface."> <em> unnumbered </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="leafref
+ : ../../index">leafref</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:unnumbered</td</tr> 
+<tr id="1-1-1-5-18-21-8" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The name of the interface.
+
+A device MAY restrict the allowed values for this leaf,
+possibly depending on the type of the interface.
+For system-controlled interfaces, this leaf is the
+device-specific name of the interface.  The 'config false'
+list interfaces/interface[name]/state contains the currently
+existing interfaces on the device.
+
+If a client tries to create configuration for a
+system-controlled interface that is not present in the
+corresponding state list, the server MAY reject
+the request if the implementation does not support
+pre-provisioning of interfaces or if the name refers to
+an interface that can never exist in the system.  A
+NETCONF server MUST reply with an rpc-error with the
+error-tag 'invalid-value' in this case.
+
+The IETF model in RFC 7223 provides YANG features for the
+following (i.e., pre-provisioning and arbitrary-names),
+however they are omitted here:
+
+ If the device supports pre-provisioning of interface
+ configuration, the 'pre-provisioning' feature is
+ advertised.
+
+ If the device allows arbitrarily named user-controlled
+ interfaces, the 'arbitrary-names' feature is advertised.
+
+When a configured user-controlled interface is created by
+the system, it is instantiated with the same name in the
+/interfaces/interface[name]/state list."> <em> name </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:name</td</tr> 
+<tr id="1-1-1-5-18-21-9" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+A textual description of the interface.
+
+A server implementation MAY map this leaf to the ifAlias
+MIB object.  Such an implementation needs to use some
+mechanism to handle the differences in size and characters
+allowed between this leaf and ifAlias.  The definition of
+such a mechanism is outside the scope of this document.
+
+Since ifAlias is defined to be stored in non-volatile
+storage, the MIB implementation MUST map ifAlias to the
+value of 'description' in the persistently stored
+datastore.
+
+Specifically, if the device supports ':startup', when
+ifAlias is read the device MUST return the value of
+'description' in the 'startup' datastore, and when it is
+written, it MUST be written to the 'running' and 'startup'
+datastores.  Note that it is up to the implementation to
+
+decide whether to modify this single leaf in 'startup' or
+perform an implicit copy-config from 'running' to
+'startup'.
+
+If the device does not support ':startup', ifAlias MUST
+be mapped to the 'description' leaf in the 'running'
+datastore."> <em> description </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="string
+">string</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:description</td</tr> 
+<tr id="1-1-1-5-18-21-10" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+This leaf contains the configured, desired state of the
+interface.
+
+Systems that implement the IF-MIB use the value of this
+leaf in the 'running' datastore to set
+IF-MIB.ifAdminStatus to 'up' or 'down' after an ifEntry
+has been initialized, as described in RFC 2863.
+
+Changes in this leaf in the 'running' datastore are
+reflected in ifAdminStatus, but if ifAdminStatus is
+changed over SNMP, this leaf is not affected."> <em> enabled </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="boolean
+">boolean</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:enabled</td</tr> 
+<tr id="1-1-1-5-18-21-11" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="System assigned number for each interface.  Corresponds to
+ifIndex object in SNMP Interface MIB"> <em> ifindex </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="uint32
+">uint32</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:ifindex</td</tr> 
+<tr id="1-1-1-5-18-21-12" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The desired state of the interface.  In RFC 7223 this leaf
+has the same read semantics as ifAdminStatus.  Here, it
+reflects the administrative state as set by enabling or
+disabling the interface.">  admin-status </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="enumeration
+ : {UP,DOWN,TESTING,}">enumeration</abbr></td>
+                       <td nowrap>no config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:admin-status</td</tr> 
+<tr id="1-1-1-5-18-21-13" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The current operational state of the interface.
+
+This leaf has the same semantics as ifOperStatus.">  oper-status </abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="enumeration
+ : {UP,DOWN,TESTING,UNKNOWN,DORMANT,NOT-PRESENT,LOWER-LAYER-DOWN,}">enumeration</abbr></td>
+                       <td nowrap>no config</td>
+                       <td></td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:oper-status</td</tr> 
+<tr id="1-1-1-5-18-21-14" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier7>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Date and time of the last state change of the interface
+(e.g., up-to-down transition).   This corresponds to the
+ifLastChange object in the standard interface MIB."> <em> last-change </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:timeticks</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:last-change</td</tr> 
+<tr id="1-1-1-5-18-21-15" class="a">
+                       <td nowrap id="p4000">
+                          <div id="p5000" class="tier7">
+                             <a href="#" id="p6000"
+                                onclick="toggleRows(this);return false"
+                                class="folder">&nbsp;
+                             </a>
+                             <abbr title="A collection of interface-related statistics objects.">counters</abbr>
+                          </div>
+                       </td> 
+<td nowrap>container</td>
+                    <td nowrap></td>
+                    <td nowrap>no config</td>
+                    <td></td>
+                    <td>current</td>
+                    <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters</td>
+                    </tr> 
+<tr id="1-1-1-5-18-21-15-1" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The total number of octets received on the interface,
+including framing characters.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-octets </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:in-octets</td</tr> 
+<tr id="1-1-1-5-18-21-15-2" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The number of packets, delivered by this sub-layer to a
+higher (sub-)layer, that were not addressed to a
+multicast or broadcast address at this sub-layer.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-unicast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:in-unicast-pkts</td</tr> 
+<tr id="1-1-1-5-18-21-15-3" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The number of packets, delivered by this sub-layer to a
+higher (sub-)layer, that were addressed to a broadcast
+address at this sub-layer.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-broadcast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:in-broadcast-pkts</td</tr> 
+<tr id="1-1-1-5-18-21-15-4" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+
+The number of packets, delivered by this sub-layer to a
+higher (sub-)layer, that were addressed to a multicast
+address at this sub-layer.  For a MAC-layer protocol,
+this includes both Group and Functional addresses.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-multicast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:in-multicast-pkts</td</tr> 
+<tr id="1-1-1-5-18-21-15-5" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+The number of inbound packets that were chosen to be
+discarded even though no errors had been detected to
+prevent their being deliverable to a higher-layer
+protocol.  One possible reason for discarding such a
+packet could be to free up buffer space.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-discards </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:in-discards</td</tr> 
+<tr id="1-1-1-5-18-21-15-6" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+For packet-oriented interfaces, the number of inbound
+packets that contained errors preventing them from being
+deliverable to a higher-layer protocol.  For character-
+oriented or fixed-length interfaces, the number of
+inbound transmission units that contained errors
+preventing them from being deliverable to a higher-layer
+protocol.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-errors </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:in-errors</td</tr> 
+<tr id="1-1-1-5-18-21-15-7" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+For packet-oriented interfaces, the number of packets
+received via the interface that were discarded because
+of an unknown or unsupported protocol.  For
+character-oriented or fixed-length interfaces that
+support protocol multiplexing, the number of
+transmission units received via the interface that were
+discarded because of an unknown or unsupported protocol.
+For any interface that does not support protocol
+multiplexing, this counter is not present.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> in-unknown-protos </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter32</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:in-unknown-protos</td</tr> 
+<tr id="1-1-1-5-18-21-15-8" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+The total number of octets transmitted out of the
+interface, including framing characters.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-octets </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:out-octets</td</tr> 
+<tr id="1-1-1-5-18-21-15-9" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The total number of packets that higher-level protocols
+requested be transmitted, and that were not addressed
+to a multicast or broadcast address at this sub-layer,
+including those that were discarded or not sent.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-unicast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:out-unicast-pkts</td</tr> 
+<tr id="1-1-1-5-18-21-15-10" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+
+The total number of packets that higher-level protocols
+requested be transmitted, and that were addressed to a
+broadcast address at this sub-layer, including those
+that were discarded or not sent.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-broadcast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:out-broadcast-pkts</td</tr> 
+<tr id="1-1-1-5-18-21-15-11" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+The total number of packets that higher-level protocols
+requested be transmitted, and that were addressed to a
+multicast address at this sub-layer, including those
+that were discarded or not sent.  For a MAC-layer
+protocol, this includes both Group and Functional
+addresses.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-multicast-pkts </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:out-multicast-pkts</td</tr> 
+<tr id="1-1-1-5-18-21-15-12" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+The number of outbound packets that were chosen to be
+discarded even though no errors had been detected to
+prevent their being transmitted.  One possible reason
+for discarding such a packet could be to free up buffer
+space.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-discards </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:out-discards</td</tr> 
+<tr id="1-1-1-5-18-21-15-13" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="[adapted from IETF interfaces model (RFC 7223)]
+Changed the counter type to counter64.
+
+For packet-oriented interfaces, the number of outbound
+packets that could not be transmitted because of errors.
+For character-oriented or fixed-length interfaces, the
+number of outbound transmission units that could not be
+transmitted because of errors.
+
+Discontinuities in the value of this counter can occur
+at re-initialization of the management system, and at
+other times as indicated by the value of
+'discontinuity-time'."> <em> out-errors </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:counter64</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:out-errors</td</tr> 
+<tr id="1-1-1-5-18-21-15-14" class="a">
+                       <td nowrap>
+                          <div id=9999 class=tier8>
+                             <a class="leaf">&nbsp;</a>
+                             <abbr title="Indicates the last time the interface counters were
+cleared."> <em> last-clear </em></abbr>
+                          </div>
+                       </td>
+                       <td>leaf</td>
+                       <td nowrap><abbr title="None">yang:date-and-time</abbr></td>
+                       <td nowrap>no config</td>
+                       <td>?</td>
+                       <td>current</td>
+                       <td nowrap>/ocif:interfaces/ocif:interface/ocif:subinterfaces/ocif:subinterface/ocif:state/ocif:counters/ocif:last-clear</td</tr> 
+
+</table>
+</div>
+</body>
+</html>
+

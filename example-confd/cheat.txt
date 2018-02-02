@@ -1,0 +1,2 @@
+netconf-console --get-schema ietf-interfaces | xmllint --nocdata --xpath "//*[local-name()='data']/text()" - | pyang -f tree
+netconf-console --get-schema ietf-interfaces | xmllint --nocdata --xpath "//*[local-name()='data']/text()" - | pyang -f uml -o ietf-interfaces.uml
