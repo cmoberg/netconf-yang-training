@@ -1,21 +1,4 @@
 ######################################################################
-# Introduction example 1-2-3-start-query-model
-# (C) 2006 Tail-f Systems
-#
-# See the README files for more information
-######################################################################
-
-usage:
-	@echo "See README files for more instructions"
-	@echo "make all     Build all example files"
-	@echo "make clean   Remove all built and intermediary files"
-	@echo "make start   Start CONFD daemon and example agent"
-	@echo "make stop    Stop any CONFD daemon and example agent"
-	@echo "make query   Run query against CONFD"
-	@echo "make cli     Start the CONFD Command Line Interface, J-style"
-	@echo "make cli-c   Start the CONFD Command Line Interface, C-style"
-
-######################################################################
 # Where is ConfD installed? Make sure CONFD_DIR points it out
 CONFD_DIR ?= ../../..
 

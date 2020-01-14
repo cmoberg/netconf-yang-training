@@ -1,2 +1,6 @@
 netconf-console --get-schema ietf-interfaces | xmllint --nocdata --xpath "//*[local-name()='data']/text()" - | pyang -f tree
 netconf-console --get-schema ietf-interfaces | xmllint --nocdata --xpath "//*[local-name()='data']/text()" - | pyang -f uml -o ietf-interfaces.uml
+netconf-console --get-schema ietf-interfaces | xmllint --nocdata --xpath "//*[local-name()='data']/text()" - | pyang -f jstree -o ietf-interfaces.html
+
+curl -u admin:admin -k https://localhost:8888/restconf/tailf/modules/ietf-interfaces/2014-05-08 | pyang -f tree
+curl -u admin:admin -k https://localhost:8888/restconf/tailf/modules/ietf-interfaces/2014-05-08 | pyang -f jstree -o ietf-interfaces.html

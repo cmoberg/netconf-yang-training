@@ -1,13 +1,12 @@
 #!/bin/env python
 
-import sys, os, warnings, time
-from ncclient import manager, operations, xml_
+from ncclient import manager
 from ncenviron import *
 
 def default_unknown_host_cb(foo, bar):
-	return True
+    return True
 
-config_snippet = """
+FILTER = """
 <config>
   <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
     <interface>
@@ -24,12 +23,13 @@ config_snippet = """
 """
 
 def demo(host=nc_host, port=nc_port, user=nc_user, password=nc_password):
-    with manager.connect(host=host, port=port, username=user, password=password, hostkey_verify=False, look_for_keys=False, allow_agent=False) as m:
-		assert(":candidate" in m.server_capabilities)
-		m.discard_changes()
-		m.edit_config(config=config_snippet, target="candidate")
-		res = m.commit()
-		print res
+    with manager.connect(host=host, port=port, username=user, password=password,
+                         hostkey_verify=False, look_for_keys=False, allow_agent=False) as mgr:
+        assert ':candidate' in mgr.server_capabilities
+        mgr.discard_changes()
+        mgr.edit_config(config=FILTER, target="candidate")
+        res = mgr.commit()
+        print res
 
 if __name__ == '__main__':
-	demo()
+    demo()

@@ -1,6 +1,6 @@
 # Running the examples using the ConfD NETCONF server
 
-This directory contains a set of python scripts to exercise basic NETCONF operations towards a ConfD-based. At the time of writing, this works well for me using ConfD 6.4.3 downloaded from the [Tail-f website](http://www.tail-f.com/confd-basic/). Your mileage may vary.
+This directory contains a set of python scripts to exercise basic NETCONF operations towards a ConfD-based environment. At the time of writing, this works well for me using ConfD 6.4.3 downloaded from the [Tail-f website](http://www.tail-f.com/confd-basic/). Your mileage may vary.
 
 # Setting up ConfD
 

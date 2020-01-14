@@ -4,9 +4,9 @@ from ncclient import manager
 from ncenviron import *
 
 def default_unknown_host_cb(foo, bar):
-	return True
+    return True
 
-config_snippet = """
+FILTER = """
 <config>
   <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
     <interface>
@@ -19,9 +19,11 @@ config_snippet = """
 """
 
 def demo(host=nc_host, port=nc_port, user=nc_user, password=nc_password):
-    with manager.connect(host=host, port=port, username=user, password=password, hostkey_verify=False, look_for_keys=False, allow_agent=False) as m:
-        res = m.edit_config(config=config_snippet, target="running")
+    with manager.connect(host=host, port=port, username=user, password=password,
+                         hostkey_verify=False, look_for_keys=False, allow_agent=False) as mgr:
+        res = mgr.edit_config(config=FILTER, target="running")
         print res
 
 if __name__ == '__main__':
-	demo()
+    demo()
+
