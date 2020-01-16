@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python3
 
 from ncclient import manager
 from ncenviron import *
@@ -6,8 +6,8 @@ from ncenviron import *
 def default_unknown_host_cb(foo, bar):
     return True
 
-FILTER = """
-<config>
+CONFIG = """
+<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
   <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
     <interface>
       <name>eth0</name>
@@ -27,9 +27,9 @@ def demo(host=nc_host, port=nc_port, user=nc_user, password=nc_password):
                          hostkey_verify=False, look_for_keys=False, allow_agent=False) as mgr:
         assert ':candidate' in mgr.server_capabilities
         mgr.discard_changes()
-        mgr.edit_config(config=FILTER, target="candidate")
+        mgr.edit_config(config=CONFIG, target="candidate")
         res = mgr.commit()
-        print res
+        print(res)
 
 if __name__ == '__main__':
     demo()
