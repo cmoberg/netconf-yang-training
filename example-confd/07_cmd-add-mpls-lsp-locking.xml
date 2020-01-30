@@ -15,7 +15,6 @@
   </lock>
 </rpc>
 ]]>]]>
-<?xml version="1.0" encoding="UTF-8"?>
 <rpc message-id="3"
      xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
   <discard-changes/>
@@ -28,33 +27,28 @@
     <target>
       <candidate/>
     </target>
-    <config>
-      <mpls xmlns="http://openconfig.net/yang/mpls">
-        <lsps>
-          <static-lsps>
-            <label-switched-path>
+    <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+      <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+        <mpls xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls">
+          <static-lsps xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls-static">
+            <static-lsp>
               <name>lsp0</name>
-              <ingress>
-                <incoming-label>100</incoming-label>
-              </ingress>
-              <egress>
-                <next-hop>2001:db8:c18:1::3</next-hop>
-              </egress>
-            </label-switched-path>
+              <in-segment>
+                <fec>
+                  <incoming-label>100</incoming-label>
+                </fec>
+              </in-segment>
+              <out-segment>
+                <nhlfe-single>
+                  <outgoing-interface>eth0</outgoing-interface>
+                </nhlfe-single>
+              </out-segment>
+            </static-lsp>
           </static-lsps>
-        </lsps>
-      </mpls>
+        </mpls>
+      </routing>
     </config>
   </edit-config>
-</rpc>
-]]>]]>
-<rpc message-id="5"
-     xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-  <lock>
-    <target>
-      <candidate/>
-    </target>
-  </lock>
 </rpc>
 ]]>]]>
 <?xml version="1.0" encoding="UTF-8"?>

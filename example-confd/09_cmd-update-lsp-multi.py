@@ -10,21 +10,25 @@ def default_unknown_host_cb(foo, bar):
 
 CONFIG = """
 <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-  <mpls xmlns="http://openconfig.net/yang/mpls">
-    <lsps>
-      <static-lsps>
-        <label-switched-path>
+  <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+    <mpls xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls">
+      <static-lsps xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls-static">
+        <static-lsp>
           <name>lsp0</name>
-          <ingress>
-            <incoming-label>100</incoming-label>
-          </ingress>
-          <egress>
-            <next-hop>2001:db8:c18:1::3</next-hop>
-          </egress>
-        </label-switched-path>
+          <in-segment>
+            <fec>
+              <incoming-label>100</incoming-label>
+            </fec>
+          </in-segment>
+          <out-segment>
+            <nhlfe-single>
+              <outgoing-interface>eth0</outgoing-interface>
+            </nhlfe-single>
+          </out-segment>
+        </static-lsp>
       </static-lsps>
-    </lsps>
-  </mpls>
+    </mpls>
+  </routing>
 </config>
 """
 
