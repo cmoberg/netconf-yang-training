@@ -22,12 +22,13 @@ all: ietf-interfaces@2018-02-20.fxs ietf-ip@2018-02-22.fxs \
 	ietf-ipv6-unicast-routing@2018-03-13.fxs ietf-mpls@2019-09-11.fxs \
 	ietf-mpls-static-extended@2019-09-12.fxs ietf-mpls-static@2019-09-12.fxs \
 	ietf-routing-types@2017-12-04.fxs iana-routing-types@2017-12-04.fxs \
-	ietf-mpls-ldp@2018-10-22.fxs iana-if-type.fxs \
+	ietf-mpls-ldp@2018-10-22.fxs ietf-mpls-ldp-extended@2018-10-22.yang iana-if-type.fxs \
 	$(CDB_DIR) ssh-keydir
 	@echo "Build complete"
 
 ######################################################################
 clean:	iclean
+	rm -rf *.trace
 
 ######################################################################
 start:  stop start_confd 
